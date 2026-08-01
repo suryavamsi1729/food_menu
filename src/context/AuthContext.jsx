@@ -1,26 +1,40 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useCallback, useMemo } from "react";
 import { STORAGE_KEYS } from "@/config/storage";
 import { loginUser } from "@/services/authService";
 
 
 export const AuthContext = createContext(null);
 
+const getStoredAuth = () => {
+  try {
+    const token = localStorage.getItem(STORAGE_KEYS.TOKEN);
+    const user = localStorage.getItem(STORAGE_KEYS.USER);
+
+    return {
+      token,
+      user: user ? JSON.parse(user) : null,
+    };
+  } catch {
+    localStorage.removeItem(STORAGE_KEYS.TOKEN);
+    localStorage.removeItem(STORAGE_KEYS.USER);
+
+    return {
+      token: null,
+      user: null,
+    };
+  }
+};
+
+
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+  const storedAuth = getStoredAuth();
+
+  const [user, setUser] = useState(storedAuth.user);
+  const [token, setToken] = useState(storedAuth.token);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem(STORAGE_KEYS.TOKEN);
-    const storedUser = localStorage.getItem(STORAGE_KEYS.USER);
 
-    if (storedToken && storedUser) {
-      setToken(storedToken);
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
-
-  const login = async (email, password) => {
+  const login = useCallback(async (email, password) => {
     try {
         setLoading(true);
 
@@ -45,9 +59,9 @@ export const AuthProvider = ({ children }) => {
     finally{
         setLoading(false);
     }
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
 
     setUser(null);
     setToken(null);
@@ -55,9 +69,9 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem(STORAGE_KEYS.TOKEN);
     localStorage.removeItem(STORAGE_KEYS.USER);
 
-  };
+  }, []);
 
-  const value = {
+  const value = useMemo(() => ({
     user,
     token,
 
@@ -67,7 +81,7 @@ export const AuthProvider = ({ children }) => {
     logout,
 
     isAuthenticated: !!token,
-  };
+  }), [user, token, loading, login, logout]);
 
   return (
     <AuthContext.Provider value={value}>
