@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import LogInPage from './pages/LoginPage'
+import NotFoundPage from './pages/NotFoundPage'
 
 function App() {
 
@@ -7,8 +8,7 @@ function App() {
     <Routes>
 
       <Route path="/login" element={<LogInPage />} />
-
-      <Route path="*" element={<h1>404 Not Found</h1>} />
+      <Route path="*" element={<NotFoundPage />} />
 
     </Routes>
   )
