@@ -4,12 +4,13 @@ import MenuPage from './pages/MenuPage';
 import NotFoundPage from './pages/NotFoundPage';
 import FoodDetailPage from './pages/FoodDetailsPage';
 import SavedRecipesPage from './pages/SavedRecipesPage';
+import ProtectedRoute from './components/common/ProtectedRoute.jsx';
 
 function App() {
   return (
     <Routes>
       <Route path="/signin" element={<LogInPage />} />
-      <Route path="/" element={<MenuPage />} />
+      <Route path="/" element={<ProtectedRoute><MenuPage /></ProtectedRoute>} />
       <Route path="/menu/:id" element={<FoodDetailPage />} />
       <Route path="/saved-recipes" element={<SavedRecipesPage />} />
 
