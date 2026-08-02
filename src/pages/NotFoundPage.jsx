@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import { Home, SearchX } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
+import { Home, SearchX } from 'lucide-react';
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const NotFoundPage = () => {
 
         <button
           type="button"
-          onClick={() => navigate("/")}
+          onClick={() => navigate('/')}
           className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-text transition hover:bg-primary-hover active:bg-primary-active"
         >
           <Home size={16} />

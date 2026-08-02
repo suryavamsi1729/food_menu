@@ -1,7 +1,7 @@
-import { memo } from "react";
-import { Search } from "lucide-react";
+import { memo } from 'react';
+import { Search } from 'lucide-react';
 
-import Select from "@/components/ui/Select";
+import Select from '@/components/ui/Select';
 
 const FilterBar = ({
   search,
@@ -19,7 +19,6 @@ const FilterBar = ({
   return (
     <section className="mt-6">
       <div className="grid gap-4 md:grid-cols-[1fr_380px]">
-
         <div className="relative max-w-lg">
           <input
             value={search}
@@ -34,19 +33,14 @@ const FilterBar = ({
         </div>
 
         <div className="flex flex-row justify-center items-center gap-4">
-        <Select
-          value={category}
-          onChange={onCategoryChange}
-          options={categoryOptions}
-          placeholder="Category"
-        />
+          <Select
+            value={category}
+            onChange={onCategoryChange}
+            options={categoryOptions}
+            placeholder="Category"
+          />
 
-        <Select
-          value={diet}
-          onChange={onDietChange}
-          options={dietOptions}
-          placeholder="Diet"
-        />
+          <Select value={diet} onChange={onDietChange} options={dietOptions} placeholder="Diet" />
         </div>
       </div>
     </section>

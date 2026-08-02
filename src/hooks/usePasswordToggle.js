@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const usePasswordToggle = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -9,7 +9,7 @@ const usePasswordToggle = () => {
 
   return {
     showPassword,
-    inputType: showPassword ? "text" : "password",
+    inputType: showPassword ? 'text' : 'password',
     togglePassword,
   };
 };

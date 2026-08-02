@@ -1,13 +1,12 @@
-import axois from "axios";
-import { STORAGE_KEYS } from "./storage";
+import axois from 'axios';
+import { STORAGE_KEYS } from './storage';
 
 const axiosInstance = axois.create({
   baseURL: import.meta.env.VITE_BASE_URL,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
-
 
 axiosInstance.interceptors.request.use(
   (config) => {

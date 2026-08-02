@@ -1,7 +1,6 @@
-import { createContext, useState, useCallback, useMemo } from "react";
-import { STORAGE_KEYS } from "@/config/storage";
-import { loginUser } from "@/services/authService";
-
+import { createContext, useState, useCallback, useMemo } from 'react';
+import { STORAGE_KEYS } from '@/config/storage';
+import { loginUser } from '@/services/authService';
 
 const AuthContext = createContext(null);
 
@@ -25,7 +24,6 @@ const getStoredAuth = () => {
   }
 };
 
-
 export const AuthProvider = ({ children }) => {
   const storedAuth = getStoredAuth();
 
@@ -33,61 +31,54 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(storedAuth.token);
   const [loading, setLoading] = useState(false);
 
-
   const login = useCallback(async (email, password) => {
     try {
-        setLoading(true);
+      setLoading(true);
 
-        const response = await loginUser(email, password);
+      const response = await loginUser(email, password);
 
-        const token = response.token;
-        const user = response.user;
+      const token = response.token;
+      const user = response.user;
 
-        localStorage.setItem(STORAGE_KEYS.TOKEN, token);
-        localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(user));
+      localStorage.setItem(STORAGE_KEYS.TOKEN, token);
+      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(user));
 
-        setToken(token);
-        setUser(user);
-
-    } 
-    catch (error) {
+      setToken(token);
+      setUser(user);
+    } catch (error) {
       return {
         success: false,
-        message: error.message || "Login failed",
+        message: error.message || 'Login failed',
       };
-    }
-    finally{
-        setLoading(false);
+    } finally {
+      setLoading(false);
     }
   }, []);
 
   const logout = useCallback(() => {
-
     setUser(null);
     setToken(null);
 
     localStorage.removeItem(STORAGE_KEYS.TOKEN);
     localStorage.removeItem(STORAGE_KEYS.USER);
-
   }, []);
 
-  const value = useMemo(() => ({
-    user,
-    token,
+  const value = useMemo(
+    () => ({
+      user,
+      token,
 
-    loading,
+      loading,
 
-    login,
-    logout,
+      login,
+      logout,
 
-    isAuthenticated: !!token,
-  }), [user, token, loading, login, logout]);
-
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
+      isAuthenticated: !!token,
+    }),
+    [user, token, loading, login, logout]
   );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export default AuthContext;

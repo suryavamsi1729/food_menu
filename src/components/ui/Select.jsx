@@ -1,24 +1,14 @@
-import { useState } from "react";
-import { Check, ChevronDown } from "lucide-react";
-import { cn } from "@/utils/cn";
+import { useState } from 'react';
+import { Check, ChevronDown } from 'lucide-react';
+import { cn } from '@/utils/cn';
 
-const Select = ({
-  options = [],
-  value,
-  onChange,
-  placeholder = "Select",
-  className,
-}) => {
+const Select = ({ options = [], value, onChange, placeholder = 'Select', className }) => {
   const [open, setOpen] = useState(false);
 
   const selected = options.find((option) => option.value === value);
 
   return (
-    <div
-      tabIndex={0}
-      onBlur={() => setOpen(false)}
-      className={cn("relative w-full", className)}
-    >
+    <div tabIndex={0} onBlur={() => setOpen(false)} className={cn('relative w-full', className)}>
       {/* Trigger */}
 
       <button
@@ -38,16 +28,11 @@ const Select = ({
           cursor-pointer
         "
       >
-        <span className="truncate">
-          {selected?.label || placeholder}
-        </span>
+        <span className="truncate">{selected?.label || placeholder}</span>
 
         <ChevronDown
           size={18}
-          className={cn(
-            "transition-transform duration-200",
-            open && "rotate-180"
-          )}
+          className={cn('transition-transform duration-200', open && 'rotate-180')}
         />
       </button>
 
@@ -67,8 +52,8 @@ const Select = ({
           transition-all duration-200 ease-out
           `,
           open
-            ? "translate-y-0 scale-100 opacity-100"
-            : "-translate-y-2 pointer-events-none scale-95 opacity-0"
+            ? 'translate-y-0 scale-100 opacity-100'
+            : '-translate-y-2 pointer-events-none scale-95 opacity-0'
         )}
       >
         {options.map((option) => (
@@ -87,15 +72,12 @@ const Select = ({
               transition-colors
               hover:bg-white/5
               `,
-              value === option.value &&
-                "bg-primary/10 text-primary"
+              value === option.value && 'bg-primary/10 text-primary'
             )}
           >
             {option.label}
 
-            {value === option.value && (
-              <Check size={16} />
-            )}
+            {value === option.value && <Check size={16} />}
           </button>
         ))}
       </div>

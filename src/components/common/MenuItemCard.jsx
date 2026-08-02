@@ -1,6 +1,6 @@
-import { memo } from "react";
-import { Users } from "lucide-react";
-import { cn } from "@/utils/cn";
+import { memo } from 'react';
+import { Users } from 'lucide-react';
+import { cn } from '@/utils/cn';
 
 const MenuItemCard = ({ item, onClick, className, onDelete }) => {
   return (
@@ -23,7 +23,6 @@ const MenuItemCard = ({ item, onClick, className, onDelete }) => {
         className
       )}
     >
-
       <div className="relative overflow-hidden">
         <img
           src={item.image}
@@ -51,12 +50,10 @@ const MenuItemCard = ({ item, onClick, className, onDelete }) => {
             font-semibold
             text-white
             `,
-            item.isVeg
-              ? "bg-green-600"
-              : "bg-red-600"
+            item.isVeg ? 'bg-green-600' : 'bg-red-600'
           )}
         >
-          {item.isVeg ? "Veg" : "Non Veg"}
+          {item.isVeg ? 'Veg' : 'Non Veg'}
         </span>
       </div>
 
@@ -64,24 +61,19 @@ const MenuItemCard = ({ item, onClick, className, onDelete }) => {
         <p className="text-xs font-semibold uppercase tracking-wider text-primary">
           {item.category}
         </p>
-        <h3 className="text-xl font-semibold text-text line-clamp-1">
-          {item.name}
-        </h3>
-        <p className="line-clamp-2 text-sm leading-6 text-text-secondary">
-          {item.description}
-        </p>
+        <h3 className="text-xl font-semibold text-text line-clamp-1">{item.name}</h3>
+        <p className="line-clamp-2 text-sm leading-6 text-text-secondary">{item.description}</p>
         <div className="flex items-center gap-2 text-sm text-text-muted">
           <Users size={16} />
           <span>{item.servings} servings</span>
         </div>
-        {
-          onDelete && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onDelete(item.id);
-              }}
-              className="
+        {onDelete && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete(item.id);
+            }}
+            className="
                 w-full
                 mt-2
                 rounded-lg
@@ -97,11 +89,10 @@ const MenuItemCard = ({ item, onClick, className, onDelete }) => {
                 hover:bg-red-600/
                 cursor-pointer
               "
-            >
-              Delete Recipe
-            </button>
-          )
-        }
+          >
+            Delete Recipe
+          </button>
+        )}
       </div>
     </article>
   );

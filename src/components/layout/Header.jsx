@@ -1,18 +1,12 @@
-import { Heart, LogOut } from "lucide-react";
-import { memo } from "react";
-import { cn } from "@/utils/cn";
+import { Heart, LogOut } from 'lucide-react';
+import { memo } from 'react';
+import { cn } from '@/utils/cn';
 
-const Header = ({
-  user,
-  savedCount = 0,
-  onSavedRecipes,
-  onLogout,
-  className,
-}) => {
+const Header = ({ user, savedCount = 0, onSavedRecipes, onLogout, className }) => {
   return (
     <header
       className={cn(
-        "flex flex-col gap-6 md:flex-row md:items-center md:justify-between",
+        'flex flex-col gap-6 md:flex-row md:items-center md:justify-between',
         className
       )}
     >
@@ -22,9 +16,7 @@ const Header = ({
         </div>
 
         <div>
-          <h1 className="text-xl md:text-2xl font-bold text-text sm:text-3xl">
-            Party Menu
-          </h1>
+          <h1 className="text-xl md:text-2xl font-bold text-text sm:text-3xl">Party Menu</h1>
 
           <p className="mt-0.5 md:mt-1 text-sm md:text-sm text-text-secondary sm:text-base">
             Welcome, {user?.name}
@@ -91,7 +83,6 @@ const Header = ({
           "
         >
           <LogOut size={18} />
-
           Logout
         </button>
       </div>
