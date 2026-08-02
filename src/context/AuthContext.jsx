@@ -37,14 +37,16 @@ export const AuthProvider = ({ children }) => {
 
       const response = await loginUser(email, password);
 
-      const token = response.token;
-      const user = response.user;
+      const token = response.data.token;
+      const user = response.data.user;
 
       localStorage.setItem(STORAGE_KEYS.TOKEN, token);
       localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(user));
 
       setToken(token);
       setUser(user);
+
+      return response;
     } catch (error) {
       return {
         success: false,
