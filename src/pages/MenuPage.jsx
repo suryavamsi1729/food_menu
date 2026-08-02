@@ -33,19 +33,18 @@ const MenuPage = () => {
   const [items] = useState(MenuItems);
 
   const [search, setSearch] = useState('');
+  const [searchKey, setSearchKey] = useState('');
   const [category, setCategory] = useState('all');
   const [diet, setDiet] = useState('all');
-
-  const deferredSearch = useDeferredValue(search);
 
   const filteredItems = useMemo(
     () =>
       filterMenuItems(items, {
-        search: deferredSearch,
+        search: searchKey,
         category,
         diet,
       }),
-    [category, diet, deferredSearch, items]
+    [category, diet, searchKey, items]
   );
 
   const handleSavedRecipes = useCallback(() => {
@@ -76,6 +75,7 @@ const MenuPage = () => {
         <FilterBar
           search={search}
           onSearchChange={setSearch}
+          onSearchKeyChange={setSearchKey}
           category={category}
           onCategoryChange={setCategory}
           diet={diet}
@@ -99,9 +99,12 @@ const MenuPage = () => {
             </>
           )}
           {filteredItems.length === 0 && (
-            <div className="mt-8 col-span-full h-72 flex flex-col items-center justify-center gap-2 rounded-2xl border border-card-border bg-[##1A1A22] p-8 text-center shadow-2xl shadow-black/20">
+            <div className="mt-8 col-span-full h-72 flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-card-border bg-[#1A1A22]/20 p-8 text-center shadow-2xl shadow-black/20">
               <p className=" font-medium uppercase tracking-[0.25em] text-text-muted">
                 No items found
+              </p>
+              <p className="text-sm text-text-secondary">
+                Try adjusting your search or filter to find what you're looking for.
               </p>
             </div>
           )}

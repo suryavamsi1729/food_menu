@@ -10,7 +10,14 @@ function App() {
   return (
     <Routes>
       <Route path="/signin" element={<LogInPage />} />
-      <Route path="/" element={<ProtectedRoute><MenuPage /></ProtectedRoute>} />
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <MenuPage />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/menu/:id" element={<FoodDetailPage />} />
       <Route path="/saved-recipes" element={<SavedRecipesPage />} />
 

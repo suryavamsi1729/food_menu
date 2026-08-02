@@ -6,6 +6,7 @@ import Select from '@/components/ui/Select';
 const FilterBar = ({
   search,
   onSearchChange,
+  onSearchKeyChange,
 
   category,
   onCategoryChange,
@@ -24,12 +25,14 @@ const FilterBar = ({
             value={search}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search dishes..."
-            className={`peer w-full h-full min-w-64  md:min-w-72 py-3 md:py-2 px-3 pr-10 border border-card-border  rounded-xl text-sm text-text-muted bg-black focus-within:outline-none focus-within:border-card-border focus-within:ring-2 focus-within:ring-primary`}
+            className={`peer w-full h-full min-w-64  md:min-w-72 py-3 md:py-2 px-4 pr-10 border border-card-border rounded-full text-sm text-text-muted bg-black focus-within:outline-none focus-within:border-card-border focus-within:ring-2 focus-within:ring-primary`}
           />
-          <Search
-            size={18}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted peer-focus:text-primary"
-          />
+          <button
+            onClick={() => onSearchKeyChange(search)}
+            className="absolute right-1.75 top-1/2 -translate-y-1/2 flex items-center p-2 bg-primary rounded-full cursor-pointer"
+          >
+            <Search size={16} className="" />
+          </button>
         </div>
 
         <div className="flex flex-row justify-center items-center gap-4">
