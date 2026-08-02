@@ -29,3 +29,11 @@ export const filterMenuItems = (menuItems,
 
   return filtered;
 };
+
+export const getMenuItemById = (menuItems, id) => {
+  return (
+    menuItems.find(
+      (item) => item.id === Number(id)
+    ) || null
+  );
+};

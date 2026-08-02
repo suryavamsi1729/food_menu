@@ -2,7 +2,7 @@ import { memo } from "react";
 import { Users } from "lucide-react";
 import { cn } from "@/utils/cn";
 
-const MenuItemCard = ({ item, onClick, className }) => {
+const MenuItemCard = ({ item, onClick, className, onDelete }) => {
   return (
     <article
       onClick={() => onClick(item.id)}
@@ -23,7 +23,6 @@ const MenuItemCard = ({ item, onClick, className }) => {
         className
       )}
     >
-      {/* Image */}
 
       <div className="relative overflow-hidden">
         <img
@@ -38,8 +37,6 @@ const MenuItemCard = ({ item, onClick, className }) => {
             group-hover:scale-105
           "
         />
-
-        {/* Diet Badge */}
 
         <span
           className={cn(
@@ -63,34 +60,48 @@ const MenuItemCard = ({ item, onClick, className }) => {
         </span>
       </div>
 
-      {/* Content */}
-
       <div className="space-y-3 p-5">
-        {/* Category */}
-
         <p className="text-xs font-semibold uppercase tracking-wider text-primary">
           {item.category}
         </p>
-
-        {/* Name */}
-
         <h3 className="text-xl font-semibold text-text line-clamp-1">
           {item.name}
         </h3>
-
-        {/* Description */}
-
         <p className="line-clamp-2 text-sm leading-6 text-text-secondary">
           {item.description}
         </p>
-
-        {/* Servings */}
-
         <div className="flex items-center gap-2 text-sm text-text-muted">
           <Users size={16} />
-
-          <span>{item.servings}</span>
+          <span>{item.servings} servings</span>
         </div>
+        {
+          onDelete && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onDelete(item.id);
+              }}
+              className="
+                w-full
+                mt-2
+                rounded-lg
+                border
+                border-error
+                bg-card-bg
+                px-3
+                py-2
+                text-sm
+                font-semibold
+                text-error
+                transition-colors
+                hover:bg-red-600/
+                cursor-pointer
+              "
+            >
+              Delete Recipe
+            </button>
+          )
+        }
       </div>
     </article>
   );

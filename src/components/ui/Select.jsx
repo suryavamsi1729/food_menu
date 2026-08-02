@@ -35,6 +35,7 @@ const Select = ({
           hover:border-primary
           focus:border-primary
           outline-none
+          cursor-pointer
         "
       >
         <span className="truncate">

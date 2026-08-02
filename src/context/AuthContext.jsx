@@ -1,9 +1,9 @@
-import { createContext, useState, useEffect, useCallback, useMemo } from "react";
+import { createContext, useState, useCallback, useMemo } from "react";
 import { STORAGE_KEYS } from "@/config/storage";
 import { loginUser } from "@/services/authService";
 
 
-export const AuthContext = createContext(null);
+const AuthContext = createContext(null);
 
 const getStoredAuth = () => {
   try {
@@ -89,3 +89,5 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+export default AuthContext;

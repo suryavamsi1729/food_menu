@@ -1,4 +1,4 @@
-import { ChefHat, Heart, LogOut } from "lucide-react";
+import { Heart, LogOut } from "lucide-react";
 import { memo } from "react";
 import { cn } from "@/utils/cn";
 
@@ -47,6 +47,7 @@ const Header = ({
             hover:border-primary
             hover:bg-card/80
             sm:w-auto
+            cursor-pointer
           "
         >
           <Heart size={18} />
@@ -86,6 +87,7 @@ const Header = ({
             hover:border-red-500
             hover:text-red-500
             sm:w-auto
+            cursor-pointer
           "
         >
           <LogOut size={18} />

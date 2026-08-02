@@ -30,7 +30,7 @@ const MenuPage = () => {
 
   const { user, logout } = useAuth();
 
-  const [items, setItems] = useState(MenuItems);
+  const [items] = useState(MenuItems);
 
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
@@ -44,7 +44,7 @@ const MenuPage = () => {
       category,
       diet,
     }),
-  [category, diet, deferredSearch]);
+  [category, diet, deferredSearch,items]);
 
 
   const handleSavedRecipes = useCallback(() => {
